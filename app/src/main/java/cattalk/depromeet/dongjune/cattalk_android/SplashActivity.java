@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import cattalk.depromeet.dongjune.cattalk_android.chatting.MainActivity;
 import cattalk.depromeet.dongjune.cattalk_android.intro_viewpager.IntroViewActivity;
 
 public class SplashActivity extends AppCompatActivity {
