@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/CatTalk-Android.iml" filepath="$PROJECT_DIR$/CatTalk-Android.iml" />
+      <module fileurl="file://C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\CatTalk-Android.iml" filepath="C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\CatTalk-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\app\app.iml" filepath="C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/catTalk-android.iml" filepath="$PROJECT_DIR$/catTalk-android.iml" />
+      <module fileurl="file://C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\catTalk-android.iml" filepath="C:\Users\dongjunekim\AndroidStudioProjects\catTalk-android\catTalk-android.iml" />
     </modules>
   </component>
 </project>
