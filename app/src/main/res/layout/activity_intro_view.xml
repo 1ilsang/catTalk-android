@@ -1,9 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="cattalk.depromeet.dongjune.cattalk_android.intro_viewpager.IntroViewActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</android.support.constraint.ConstraintLayout>
+    <data>
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/intro_viewpager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </android.support.v4.view.ViewPager>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="1000">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_weight="500"
+                    android:gravity="center"
+                    android:paddingLeft="50dp"
+                    android:paddingRight="50dp"
+                    android:paddingTop="10dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dip"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="500"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:paddingTop="2dp"
+                    android:weightSum="1000">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="400"></LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dip"
+                        android:layout_weight="600"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/btn_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp" />
+
+                        <android.support.design.widget.TabLayout
+                            android:id="@+id/tablayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp"
+                            android:gravity="bottom"
+                            app:tabBackground="@drawable/tab_selector"
+                            app:tabGravity="center"
+                            app:tabIndicatorHeight="0dp"
+                            app:tabPaddingEnd="7dp"
+                            app:tabPaddingStart="7dp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+
+</layout>
+
