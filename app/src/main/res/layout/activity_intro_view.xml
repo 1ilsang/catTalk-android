@@ -58,19 +58,13 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dip"
-                        android:layout_weight="400"></LinearLayout>
+                        android:layout_weight="600"></LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dip"
                         android:layout_weight="600"
                         android:orientation="vertical">
-
-                        <Button
-                            android:id="@+id/btn_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_marginTop="5dp" />
 
                         <android.support.design.widget.TabLayout
                             android:id="@+id/tablayout"
@@ -83,6 +77,12 @@
                             app:tabIndicatorHeight="0dp"
                             app:tabPaddingEnd="7dp"
                             app:tabPaddingStart="7dp" />
+
+                        <Button
+                            android:id="@+id/btn_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="5dp" />
 
 
                     </LinearLayout>
