@@ -5,7 +5,7 @@ android {
         enabled = true
     }
     compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    buildToolsVersion '26.0.2'
     defaultConfig {
         applicationId "cattalk.depromeet.dongjune.cattalk_android"
         minSdkVersion 18
@@ -34,4 +34,6 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     testCompile 'junit:junit:4.12'
     implementation 'com.android.support:design:27.0.0'
+    compile 'com.android.support:recyclerview-v7:25.3.1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
 }
