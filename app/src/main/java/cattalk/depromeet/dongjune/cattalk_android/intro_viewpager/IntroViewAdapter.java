@@ -27,18 +27,18 @@ public class IntroViewAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return 2;
     }
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         View view = null;
         view = inflater.inflate(R.layout.item_intro_viewpager, null);
-        //ImageView img = (ImageView) view.findViewById(R.id.item_intro_viewpager);
+        ImageView img = (ImageView) view.findViewById(R.id.viewpager_item);
 
         //비트맵으로 변환하여 이미지용량을 줄이고 화질을 낮춤
-        /*img.setImageBitmap(getResizedBitmap(context.getResources(), R.drawable.intro_pager01 + position, 2));
-        container.addView(view);*/
+        img.setImageBitmap(getResizedBitmap(context.getResources(), R.drawable.intro_img_01 + position, 2));
+        container.addView(view);
         return view;
     }
 
