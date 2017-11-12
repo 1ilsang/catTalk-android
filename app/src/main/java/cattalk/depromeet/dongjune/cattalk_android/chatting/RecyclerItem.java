@@ -6,11 +6,9 @@ package cattalk.depromeet.dongjune.cattalk_android.chatting;
 
 public class RecyclerItem {
     private String msg;
-    private int image;
 
-    public RecyclerItem(String msg, int image){
+    public RecyclerItem(String msg){
         this.msg = msg;
-        this.image = image;
     }
 
     public void setMsg(String msg){
@@ -21,11 +19,4 @@ public class RecyclerItem {
         return msg;
     }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
-
-    public int getImage() {
-        return image;
-    }
 }

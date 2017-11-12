@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
         addData();
     }
 
-    public void addData(){
+    public void addData() {
         items = new ArrayList<>();
 
-        for(int i=0;i<30;i++) {
-            items.add(new RecyclerItem("test", R.mipmap.ic_launcher));
+        for (int i = 0; i < 30; i++) {
+            items.add(new RecyclerItem("test"));
         }
 
-        recyclerView.setAdapter(new ChatAdapter(MainActivity.this, items, R.layout.activity_chat));
+        recyclerView.setAdapter(new ChatAdapter(MainActivity.this, items, R.layout.item_recyclerview));
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
+
 import java.util.List;
 
 import cattalk.depromeet.dongjune.cattalk_android.R;
@@ -21,12 +22,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private int itemLayout;
     Context context;
 
-    public ChatAdapter(Context context, List<RecyclerItem> items, int itemLayout){
+    public ChatAdapter(Context context, List<RecyclerItem> items, int itemLayout) {
         this.context = context;
         mItems = items;
         this.itemLayout = itemLayout;
     }
-
 
 
     @Override
@@ -48,13 +48,11 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView text;
-        public ImageView img;
 
-        public ViewHolder(View itemView){
+        public ViewHolder(View itemView) {
             super(itemView);
 
-            img = (ImageView) itemView.findViewById(R.id.imgProfile);
-            text = (TextView) itemView.findViewById(R.id.tvMsg);
+            text = (TextView) itemView.findViewById(R.id.message_text);
         }
 
     }
