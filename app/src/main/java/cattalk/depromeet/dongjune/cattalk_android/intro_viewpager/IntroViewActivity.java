@@ -21,13 +21,11 @@ import retrofit2.Response;
 public class IntroViewActivity extends AppCompatActivity {
 
     ActivityIntroViewBinding binding;
-    private ChattingService service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_intro_view);
-        testServerMessage();
         //saveFirstCheck();
 
         IntroViewAdapter adapter = new IntroViewAdapter(getApplicationContext(), getLayoutInflater());
@@ -45,28 +43,7 @@ public class IntroViewActivity extends AppCompatActivity {
 
     }
 
-    private void testServerMessage() {
-        service = ApiUtils.getSosService();
-        service.getAnswers("하이").enqueue(new Callback<ChattingVo>() {
-            @Override
-            public void onResponse(Call<ChattingVo> call, Response<ChattingVo> response) {
-                if (response.isSuccessful()) {
-                    Log.d(response.body().toString(), "Success");
-                } else {
-                    int statusCode = response.code();
-                    Log.d(statusCode + "", "Success but");
 
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ChattingVo> call, Throwable t) {
-                Log.d("MainActivity", "fail");
-
-            }
-        });
-
-    }
 
     private void saveFirstCheck() {
         SharedPreferences sp = getPreferences(MODE_PRIVATE);
