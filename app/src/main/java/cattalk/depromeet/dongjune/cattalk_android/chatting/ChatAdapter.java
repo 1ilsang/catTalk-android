@@ -1,14 +1,11 @@
 package cattalk.depromeet.dongjune.cattalk_android.chatting;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
+
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 
@@ -25,8 +22,6 @@ import cattalk.depromeet.dongjune.cattalk_android.network.vo.ChattingVo;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private List<ChattingVo> mItems;
     private int itemLayout;
-    private int align;
-    private boolean message_left = false;
     Context context;
 
     public ChatAdapter(Context context, List<ChattingVo> items, int itemLayout) {
@@ -38,29 +33,27 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public ChatAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_recyclerview, null);
-
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout, null, false);
+        RecyclerView.LayoutParams lp =new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(lp);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ChatAdapter.ViewHolder holder, int position) {
-        holder.text.setText(mItems.get(position).getResponse());
-//        holder.text.setBackground(context.getResources().getDrawable(message_left? R.drawable.chat_white : R.drawable.chat_orange));
 
-        if(mItems.get(position).getResponse() != null){
-            holder.text.setBackground(context.getResources().getDrawable(R.drawable.chat_white));
-            holder.chatMsgLayout.setGravity(Gravity.LEFT);
-//            holder.viewRight.setVisibility(View.GONE);
-//            holder.viewLeft.setVisibility(View.GONE);
-        } else if(mItems.get(position).getMsg() != null){
-            holder.text.setBackground(context.getResources().getDrawable(R.drawable.chat_orange));
-            holder.chatMsgLayout.setGravity(Gravity.RIGHT);
-//            holder.viewRight.setVisibility(View.GONE);
-//            holder.viewLeft.setVisibility(View.GONE);
+        if (mItems.get(position).getMsg() == null) {//내가 보낸거
+            holder.text1.setVisibility(View.INVISIBLE);
+            holder.text2.setVisibility(View.VISIBLE);
+            holder.text2.setText(mItems.get(position).getResponse());
+//            holder.text2.setBackground(context.getResources().getDrawable(R.drawable.chat_orange));
+            Log.d("asdfasdfrr", "Asdfasdff");
+        } else {//심심이가 보낸거
+            holder.text1.setVisibility(View.VISIBLE);
+            holder.text2.setVisibility(View.INVISIBLE);
+            holder.text1.setText(mItems.get(position).getResponse());
+//            holder.text2.setBackground(context.getResources().getDrawable(R.drawable.chat_white));
         }
-
-
     }
 
 
@@ -70,18 +63,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView text;
-        public RelativeLayout chatMsgLayout;
-//        View viewRight;
-//        View viewLeft;
+        public TextView text1, text2;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            chatMsgLayout = (RelativeLayout) itemView.findViewById(R.id.chatMsgLayout);
-            text = (TextView) itemView.findViewById(R.id.message_text);
-//            viewLeft = (View) itemView.findViewById(R.id.imageviewleft);
-//            viewRight = (View) itemView.findViewById(R.id.imageviewright);
+            text1 = (TextView) itemView.findViewById(R.id.message_text1);
+            text2 = (TextView) itemView.findViewById(R.id.message_text2);
         }
 
     }
