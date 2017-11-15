@@ -46,13 +46,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
             holder.text1.setVisibility(View.INVISIBLE);
             holder.text2.setVisibility(View.VISIBLE);
             holder.text2.setText(mItems.get(position).getResponse());
-//            holder.text2.setBackground(context.getResources().getDrawable(R.drawable.chat_orange));
+            holder.text2.setBackground(context.getResources().getDrawable(R.drawable.chat_orange));
             Log.d("asdfasdfrr", "Asdfasdff");
         } else {//심심이가 보낸거
             holder.text1.setVisibility(View.VISIBLE);
             holder.text2.setVisibility(View.INVISIBLE);
             holder.text1.setText(mItems.get(position).getResponse());
-//            holder.text2.setBackground(context.getResources().getDrawable(R.drawable.chat_white));
+            holder.text1.setBackground(context.getResources().getDrawable(R.drawable.chat_white));
         }
     }
 
