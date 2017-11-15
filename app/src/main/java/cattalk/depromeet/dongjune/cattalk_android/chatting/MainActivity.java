@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ChattingService service;
     private ChattingVo vo;
     private ChatAdapter adapter;
+    private String message;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         binding.sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = binding.chatEdit.getText().toString();
+                message = binding.chatEdit.getText().toString();
                 binding.chatEdit.setText("");
                 vo = new ChattingVo();
                 vo.setResponse(message);
@@ -95,7 +96,8 @@ public class MainActivity extends AppCompatActivity {
         /*vo = new ChattingVo();
         vo.setResponse("asdf");
         items.add(vo);*/
-        adapter = new ChatAdapter(MainActivity.this, items, R.layout.item_recyclerview);
+        adapter = new ChatAdapter(MainActivity.this, items, R.layout.item_recyclerview
+        );
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
