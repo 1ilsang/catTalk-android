@@ -1,5 +1,6 @@
 package cattalk.depromeet.dongjune.cattalk_android.chatting;
 
+import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -11,6 +12,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.google.gson.Gson;
 
@@ -22,6 +26,7 @@ import cattalk.depromeet.dongjune.cattalk_android.databinding.ActivityMainBindin
 import cattalk.depromeet.dongjune.cattalk_android.network.dao.ApiUtils;
 import cattalk.depromeet.dongjune.cattalk_android.network.service.ChattingService;
 import cattalk.depromeet.dongjune.cattalk_android.network.vo.ChattingVo;
+import cattalk.depromeet.dongjune.cattalk_android.network.vo.TransVo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -41,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         items = new ArrayList<>();
         addData();
         binding.toTransBtn.setOnClickListener(new View.OnClickListener() {
@@ -69,8 +76,15 @@ public class MainActivity extends AppCompatActivity {
                 items.add(vo);
                 adapter.notifyDataSetChanged();
                 Log.d("items.toString", items.toString());
+                if (setTransLate) {
+                    transMessage(message);
+                } else {
+                    sendMessage(message);
+                }
+                Log.d("message", message);
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
-                testServerMessage(message);
             }
         });
 
@@ -87,15 +101,17 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
-    private void testServerMessage(String messgae) {
+    private void sendMessage(String messgae) {
         service = ApiUtils.getSosService();
         service.getAnswers(messgae).enqueue(new Callback<ChattingVo>() {
             @Override
             public void onResponse(Call<ChattingVo> call, Response<ChattingVo> response) {
                 if (response.isSuccessful()) {
+                    Log.d("send", "sendddd");
                     Log.d(String.valueOf(response.body().getResponse()), "Success");
                     ChattingVo vo = new ChattingVo();
                     vo.setResponse(response.body().getResponse());
+                    vo.setMsg(response.body().getMsg());
                     items.add(vo);
                     adapter.notifyDataSetChanged();
                 } else {
@@ -110,6 +126,36 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", "fail");
 
             }
+        });
+
+    }
+
+    private void transMessage(String messgae) {
+        service = ApiUtils.getSosService();
+
+        service.getTrans(messgae).enqueue(new Callback<TransVo>() {
+            @Override
+            public void onResponse(Call<TransVo> call, Response<TransVo> response) {
+                if (response.isSuccessful()) {
+                    Log.d(String.valueOf(response.body().getTranslatedText()), "Success");
+                    ChattingVo vo = new ChattingVo();
+                    vo.setResponse(response.body().getTranslatedText());
+                    vo.setMsg(response.body().getSrcLangType());
+                    items.add(vo);
+                    adapter.notifyDataSetChanged();
+                    Log.d("trans", response.body().getTranslatedText());
+                } else {
+                    int statusCode = response.code();
+                    Log.d(statusCode + "", "Success but");
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TransVo> call, Throwable t) {
+                Log.d("MainActivity", "fail");
+            }
+
         });
 
     }

@@ -1,10 +1,13 @@
 package cattalk.depromeet.dongjune.cattalk_android.chatting;
 
 import android.content.Context;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.support.v7.widget.RecyclerView;
 
@@ -32,13 +35,25 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
 
     @Override
     public ChatAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout, null);
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(itemLayout, null, false);
+        RecyclerView.LayoutParams lp =new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT);
+        view.setLayoutParams(lp);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ChatAdapter.ViewHolder holder, int position) {
-        holder.text.setText(mItems.get(position).getResponse());
+
+        if (mItems.get(position).getMsg() == null) {//내가 보낸거
+            holder.text1.setVisibility(View.INVISIBLE);
+            holder.text2.setVisibility(View.VISIBLE);
+            holder.text2.setText(mItems.get(position).getResponse());
+            Log.d("asdfasdfrr", "Asdfasdff");
+        } else {//심심이가 보낸거
+            holder.text1.setVisibility(View.VISIBLE);
+            holder.text2.setVisibility(View.INVISIBLE);
+            holder.text1.setText(mItems.get(position).getResponse());
+        }
     }
 
 
@@ -48,12 +63,12 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView text;
+        public TextView text1, text2;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            text = (TextView) itemView.findViewById(R.id.message_text);
+            text1 = (TextView) itemView.findViewById(R.id.message_text1);
+            text2 = (TextView) itemView.findViewById(R.id.message_text2);
         }
 
     }
